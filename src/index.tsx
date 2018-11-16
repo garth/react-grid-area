@@ -1,24 +1,31 @@
-import React, { ReactType, CSSProperties } from 'react'
+import React, { CSSProperties, ComponentClass, FunctionComponent } from 'react'
 
-const Grid: React.StatelessComponent<{
+type ReactComponent = ComponentClass | FunctionComponent
+export interface Layout {
+  template: string
+  components: ReactComponent[]
+}
+
+const getName = (Component: ReactComponent) => Component.displayName || Component.name
+
+export const Grid: React.StatelessComponent<{
   className?: string
   style?: CSSProperties
-  template: string
-  components: { [name: string]: ReactType }
-}> = ({ className, style, template, components }) => (
+  layout: Layout
+}> = ({ className, style, layout: { template = '', components = [] } }) => (
   <div className={className} style={{ ...style, display: 'grid', gridTemplate: template }}>
-    {template
-      .match(/([\w])+/g)
-      .filter((area, index, self) => components[area] && self.indexOf(area) === index)
-      .map(area => {
-        const Component = components[area]
-        return (
-          <div key={area} style={{ gridArea: area }}>
-            <Component />
-          </div>
-        )
-      })}
+    {components.map(Component => {
+      const name = getName(Component)
+      return (
+        <div key={name} className="grid-area" style={{ gridArea: name }}>
+          <Component />
+        </div>
+      )
+    })}
   </div>
 )
 
-export default Grid
+export const layout = (strings: TemplateStringsArray, ...values: ReactComponent[]): Layout => ({
+  template: strings.reduce((template, value, i) => template + value + (values[i] ? getName(values[i]) : ''), '').trim(),
+  components: [...new Set(values)]
+})
