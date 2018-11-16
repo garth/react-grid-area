@@ -1,6 +1,6 @@
 {
   "name": "react-grid-area",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Filter grid areas according to the css gridTemplate property",
   "repository": "https://github.com/garth/react-grid-area.git",
   "author": "Garth Williams",
@@ -37,5 +37,8 @@
     "tslint-config-prettier": "^1.16.0",
     "tslint-react": "^3.6.0",
     "typescript": "^3.1.6"
+  },
+  "dependencies": {
+    "tslib": "^1.9.3"
   }
 }

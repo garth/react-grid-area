@@ -54,7 +54,7 @@ const templates = {
     "header header" auto
     "menu   faq"    1fr
     "footer footer" auto / auto 1fr`,
-  faq_mobild: `
+  faq_mobile: `
     "header" auto
     "faq"    1fr
     "footer" auto`
