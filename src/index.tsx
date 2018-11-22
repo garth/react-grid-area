@@ -12,13 +12,14 @@ export const Grid: React.StatelessComponent<{
   className?: string
   style?: CSSProperties
   layout: Layout
-}> = ({ className, style, layout: { template = '', components = [] } }) => (
+  props?: {}
+}> = ({ className, style, layout: { template = '', components = [] }, props = {} }) => (
   <div className={className} style={{ ...style, display: 'grid', gridTemplate: template }}>
     {components.map(Component => {
       const name = getName(Component)
       return (
         <div key={name} className="grid-area" style={{ gridArea: name }}>
-          <Component />
+          <Component {...props} />
         </div>
       )
     })}
