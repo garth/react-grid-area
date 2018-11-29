@@ -22,6 +22,16 @@ or
 npm install react-grid-area
 ```
 
+## Constraints
+
+Components added to the grid must accept a standard `style` attribute, which must be applied to the outermost component element. If you are using TypeScript the style attribute will be enforced by the type checker.
+
+Components must also be named (in most cases React will take care of this for you). The component name will be used as the css grid area name.
+
+```js
+const GridComponentExample = ({ style }) => <div style={style} />
+```
+
 ## Example Usage
 
 The following TypeScript example shows how react-grid-area could be used as a top level page layout tool.
@@ -66,9 +76,11 @@ const App: React.StatelessComponent<{ page: string; screenSize: string }> = ({ p
 )
 ```
 
-### Styling
+### Tag and Styling
 
-react-grid-area supports both `style` and `className` properties, meaning that it can be styled inline, via styled-components or with regular css classes.
+By default react-grid-area will output a `div` tag for the grid container, you can change this by passing a tag name.
+
+For custom styling, react-grid-area supports both `style` and `className` properties, meaning that it can be styled inline, via styled-components or with regular css classes.
 
 ```jsx
 import { Grid, layout } from 'react-grid-area'
@@ -82,5 +94,5 @@ const StyledGrid = styled(Grid)`
 
 const pageLayout = layout`"${Page}"`
 
-export default ({ page, screenSize }) => <StyledGrid layout={pageLayout} />
+export default ({ page, screenSize }) => <StyledGrid tag="main" layout={pageLayout} />
 ```
