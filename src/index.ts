@@ -22,13 +22,13 @@ export const Grid: StatelessComponent<{
   tag?: string
   className?: string
   style?: CSSProperties
-  ref?: MutableRefObject<HTMLElement>
+  gridRef?: MutableRefObject<HTMLElement>
   layout: Layout
   props?: {}
-}> = ({ tag = 'div', className, style = {}, ref, layout: { template = '', components = [] }, props = {} }) =>
+}> = ({ tag = 'div', className, style = {}, gridRef, layout: { template = '', components = [] }, props = {} }) =>
   createElement(
     tag,
-    { className, style: { ...style, display: 'grid', gridTemplate: template }, ref },
+    { className, style: { ...style, display: 'grid', gridTemplate: template }, ref: gridRef },
     components.map(Component => {
       const key = getName(Component)
       return createElement(Component, { ...props, key, style: { ...(props['style'] || {}), gridArea: key } })
