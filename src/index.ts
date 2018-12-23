@@ -1,4 +1,11 @@
-import { StatelessComponent, createElement, CSSProperties, ComponentClass, FunctionComponent } from 'react'
+import {
+  StatelessComponent,
+  createElement,
+  CSSProperties,
+  ComponentClass,
+  FunctionComponent,
+  MutableRefObject
+} from 'react'
 
 interface Props {
   style: CSSProperties
@@ -15,12 +22,13 @@ export const Grid: StatelessComponent<{
   tag?: string
   className?: string
   style?: CSSProperties
+  ref?: MutableRefObject<HTMLElement>
   layout: Layout
   props?: {}
-}> = ({ tag = 'div', className, style = {}, layout: { template = '', components = [] }, props = {} }) =>
+}> = ({ tag = 'div', className, style = {}, ref, layout: { template = '', components = [] }, props = {} }) =>
   createElement(
     tag,
-    { className, style: { ...style, display: 'grid', gridTemplate: template } },
+    { className, style: { ...style, display: 'grid', gridTemplate: template }, ref },
     components.map(Component => {
       const key = getName(Component)
       return createElement(Component, { ...props, key, style: { ...(props['style'] || {}), gridArea: key } })
