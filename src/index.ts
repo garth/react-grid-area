@@ -1,11 +1,4 @@
-import {
-  StatelessComponent,
-  createElement,
-  CSSProperties,
-  ComponentClass,
-  FunctionComponent,
-  MutableRefObject
-} from 'react'
+import { FunctionComponent, createElement, CSSProperties, ComponentClass, MutableRefObject } from 'react'
 
 interface Props {
   style: CSSProperties
@@ -18,7 +11,7 @@ export interface Layout {
 
 const getName = (Component: ReactComponent) => Component.displayName || Component.name
 
-export const Grid: StatelessComponent<{
+export const Grid: FunctionComponent<{
   tag?: string
   className?: string
   style?: CSSProperties

@@ -67,7 +67,7 @@ const layouts = {
     "${Footer}" auto`
 }
 
-const App: React.StatelessComponent<{ page: string; screenSize: string }> = ({ page, screenSize }) => (
+const App: React.FunctionComponent<{ page: string; screenSize: string }> = ({ page, screenSize }) => (
   <Grid
     layout={layouts[`${page}_${screenSize}`]}
     /* optional props will be forwarded to each component in the layout */
