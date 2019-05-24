@@ -24,13 +24,7 @@ npm install react-grid-area
 
 ## Constraints
 
-Components added to the grid must accept a standard `style` attribute, which must be applied to the outermost component element. If you are using TypeScript the style attribute will be enforced by the type checker.
-
-Components must also be named (in most cases React will take care of this for you). The component name will be used as the css grid area name.
-
-```js
-const GridComponentExample = ({ style }) => <div style={style} />
-```
+Grid components must be named (in most cases React will take care of this for you). The component name will be used as the css grid area name.
 
 ## Example Usage
 
@@ -80,7 +74,7 @@ const App: React.FunctionComponent<{ page: string; screenSize: string }> = ({ pa
 
 By default react-grid-area will output a `div` tag for the grid container, you can change this by passing a tag name.
 
-For custom styling, react-grid-area supports both `style` and `className` properties, meaning that it can be styled inline, via styled-components or with regular css classes.
+For custom styling, react-grid-area supports the `className` property.
 
 ```jsx
 import { Grid, layout } from 'react-grid-area'
