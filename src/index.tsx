@@ -29,9 +29,21 @@ export const Grid: FunctionComponent<{
     })
   )
 
-export const layout = (strings: TemplateStringsArray, ...values: ReactComponent[]): Layout => ({
+type Value = ReactComponent | string | number
+
+function isComponent(value: Value): value is ReactComponent {
+  return (value as ReactComponent).name !== undefined
+}
+
+export const layout = (strings: TemplateStringsArray, ...values: Value[]): Layout => ({
   template: strings
-    .reduce((template, value, i) => template + value + (values.length > i ? getName(values[i], i) : ''), '')
+    .reduce(
+      (template, value, i) =>
+        template +
+        value +
+        (values.length <= i ? '' : isComponent(value) ? getName(values[i] as ReactComponent, i) : `${value}`),
+      ''
+    )
     .trim(),
-  components: [...new Set(values)]
+  components: [...new Set<ReactComponent>(values.filter(value => isComponent(value)) as ReactComponent[])]
 })

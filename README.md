@@ -90,3 +90,20 @@ const pageLayout = layout`"${Page}"`
 
 export default ({ page, screenSize }) => <StyledGrid tag="main" layout={pageLayout} />
 ```
+
+### Dynamic values
+
+Layout values can be dynamically generated, so long as dynamic values return either a string or number.
+
+```jsx
+const largeHeader = true
+const bodyWidth = '1fr'
+const bodyHeight = '1fr'
+
+const layouts = {
+  home_desktop: layout`
+    "${Header} ${Header}" ${largeHeader ? 6 : 4}em
+    "${Menu}   ${Home}"   ${bodyHeight}
+    "${Footer} ${Footer}" auto / auto ${bodyWidth}`
+}
+```
