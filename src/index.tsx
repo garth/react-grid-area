@@ -38,10 +38,10 @@ function isComponent(value: Value): value is ReactComponent {
 export const layout = (strings: TemplateStringsArray, ...values: Value[]): Layout => ({
   template: strings
     .reduce(
-      (template, value, i) =>
-        template +
-        value +
-        (values.length <= i ? '' : isComponent(value) ? getName(values[i] as ReactComponent, i) : `${value}`),
+      (template, part, i) =>
+        `${template}${part}${
+          i >= values.length ? '' : isComponent(values[i]) ? getName(values[i] as ReactComponent, i) : `${values[i]}`
+        }`,
       ''
     )
     .trim(),

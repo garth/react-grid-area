@@ -1,6 +1,6 @@
 {
   "name": "react-grid-area",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Filter grid areas according to the css gridTemplate property",
   "repository": "https://github.com/garth/react-grid-area.git",
   "author": "Garth Williams",
